@@ -5,13 +5,13 @@
 
 /* ---------- BAGIAN 1A: JADWAL & TEMA HARIAN ---------- */
 const JADWAL = {
-  Senin:  { judul:"Disiplin dan Tanggung Jawab", ikon:"", fokus:"Membentuk siswa yang disiplin, tertib, amanah, dan bertanggung jawab.",
+  Senin:  { judul:"Disiplin dan Tanggung Jawab", ikon:"⏰", fokus:"Membentuk siswa yang disiplin, tertib, amanah, dan bertanggung jawab.",
     tema:["Disiplin sebagai Cerminan Keimanan","Pentingnya Menaati Peraturan Sekolah","Tanggung Jawab Seorang Pelajar Muslim","Menghargai Waktu sebagai Amanah","Jangan Membiasakan Menunda Salat","Menjadi Siswa yang Tertib Tanpa Diawasi","Kejujuran dalam Mengerjakan Tugas","Amanah dalam Kehidupan Sehari-hari","Menjaga Komitmen dan Janji","Menghargai Kesempatan Menuntut Ilmu","Disiplin dalam Beribadah","Menjadi Pribadi yang Dapat Dipercaya","Belajar Bertanggung Jawab atas Kesalahan","Memanfaatkan Waktu Muda dengan Baik","Kebiasaan Kecil yang Membentuk Karakter Besar"] },
-  Selasa: { judul:"Akhlak dan Adab", ikon:"", fokus:"Membentuk siswa yang santun, menghormati orang lain, dan menjaga perilaku.",
+  Selasa: { judul:"Akhlak dan Adab", ikon:"🤝", fokus:"Membentuk siswa yang santun, menghormati orang lain, dan menjaga perilaku.",
     tema:["Adab kepada Guru dan Orang Tua","Menjaga Lisan dari Perkataan Buruk","Bahaya Ghibah dan Fitnah","Menghargai Teman yang Berbeda Pendapat","Senyum sebagai Bentuk Sedekah","Pentingnya Sopan Santun","Jangan Sombong dengan Kepintaran","Belajar Menjadi Pribadi yang Rendah Hati","Keutamaan Berkata Jujur","Menjaga Sikap di Lingkungan Sekolah","Adab Berteman dalam Islam","Menghindari Perkataan Kasar","Membiasakan Mengucapkan Terima Kasih","Indahnya Saling Memaafkan","Akhlak Mulia sebagai Cerminan Seorang Muslim"] },
-  Rabu:   { judul:"Kepedulian dan Persaudaraan", ikon:"", fokus:"Membangun kepedulian sosial, persahabatan, dan lingkungan sekolah yang aman.",
+  Rabu:   { judul:"Kepedulian dan Persaudaraan", ikon:"💚", fokus:"Membangun kepedulian sosial, persahabatan, dan lingkungan sekolah yang aman.",
     tema:["Jangan Melakukan Perundungan atau Bullying","Menolong Teman yang Sedang Kesulitan","Saling Memaafkan Menguatkan Persahabatan","Menjaga Persaudaraan Sesama Muslim","Bahaya Iri, Dengki, dan Permusuhan","Menghargai Perbedaan","Jangan Mengucilkan Teman","Menjadi Teman yang Membawa Kebaikan","Keutamaan Bersedekah untuk Sesama","Peduli kepada Sesama","Menjaga Kebersihan sebagai Bagian dari Iman","Tidak Menyakiti Orang Lain","Menjenguk dan Mendoakan Orang Sakit","Menghormati Hak Orang Lain","Membangun Lingkungan Sekolah yang Damai"] },
-  Kamis:  { judul:"Keimanan dan Ibadah", ikon:"", fokus:"Memperkuat hubungan siswa dengan Allah SWT dan membiasakan ibadah.",
+  Kamis:  { judul:"Keimanan dan Ibadah", ikon:"🕌", fokus:"Memperkuat hubungan siswa dengan Allah SWT dan membiasakan ibadah.",
     tema:["Keutamaan Salat Lima Waktu","Mengapa Kita Harus Bersyukur?","Pentingnya Membaca dan Mengamalkan Al-Qur'an","Sedekah Menjaga Harta dan Hati","Memperbanyak Istigfar dan Bertobat","Mengingat Kematian dan Mempersiapkan Amal","Menjaga Niat dalam Menuntut Ilmu","Keutamaan Puasa Senin dan Kamis","Memperbanyak Selawat kepada Nabi Muhammad SAW","Pentingnya Berdoa kepada Allah","Belajar Ikhlas dalam Beramal","Keutamaan Berbakti kepada Orang Tua","Menjaga Salat sebagai Kebutuhan Hidup","Keutamaan Membaca Zikir","Menjadi Remaja yang Dekat dengan Allah"] }
 };
 const HARI_KULTUM = Object.keys(JADWAL);
@@ -25,6 +25,11 @@ const BUKA = judul => "Assalamu'alaikum warahmatullahi wabarakatuh.\n\nAlhamduli
 const TUTUP = "Demikian kultum singkat yang dapat saya sampaikan. Semoga apa yang kita dengarkan hari ini menjadi pengingat dan motivasi bagi kita semua untuk menjadi pribadi yang lebih baik.\n\nMohon maaf apabila terdapat kesalahan dalam perkataan maupun penyampaian.\n\nWassalamu'alaikum warahmatullahi wabarakatuh.";
 
 /* BAGIAN 1D: data naskah ada di data.js */
+/* Sisipkan paragraf tambahan (tambahan-*.js) setelah paragraf dalil */
+if (typeof TAMBAHAN !== "undefined") kultumData.forEach(k => {
+  const t = TAMBAHAN[k.id];
+  if (t && !k.sudahDitambah) { const p = k.isi.split("\n\n"); p.splice(2, 0, t); k.isi = p.join("\n\n"); k.sudahDitambah = true; }
+});
 kultumData.forEach(k => { k.durasi = k.durasi || Math.max(2, Math.ceil((BUKA(k.judul) + " " + k.isi + " " + TUTUP).split(/\s+/).length / 130)); });
 
 /* =====================================================
