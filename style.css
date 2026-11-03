@@ -118,3 +118,18 @@ body{overflow-x:hidden;overflow-wrap:anywhere}
 }
 
 .sumber{color:var(--text-secondary);font-size:.8em;margin-top:18px}
+
+.brand .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.brand .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
